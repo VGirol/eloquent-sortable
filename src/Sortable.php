@@ -11,6 +11,10 @@ interface Sortable
      */
     public function setHighestOrderNumber(): void;
 
+    public function setHighestOrderNumberAsRelationship(): void;
+
+    public function getHighestOrderNumber(): int;
+
     /**
      * Let's be nice and provide an ordered scope.
      *
@@ -33,4 +37,26 @@ interface Sortable
      * Determine if the order column should be set when saving a new model instance.
      */
     public function shouldSortWhenCreating(): bool;
+
+    public function moveOrderDown(): static;
+
+    public function moveOrderUp(): static;
+
+    public function moveToStart(): static;
+
+    public function moveToEnd(): static;
+
+    public function isLastInOrder(): bool;
+
+    public function isFirstInOrder(): bool;
+
+    public function getActualRank(): int;
+
+    public function isRank(int $rank): bool;
+
+    public function saveNewOrder(int $newOrder): void;
+
+    public function swapOrderWithModel(Sortable $otherModel): static;
+
+    public static function swapOrder(Sortable $model, Sortable $otherModel): void;
 }
